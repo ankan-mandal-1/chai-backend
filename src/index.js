@@ -3,11 +3,24 @@ import dotenv from "dotenv"
 dotenv.config()
 
 import connectDB from "./db/index.js";
+import {app} from "./app.js"
 
-
-
-console.log(process.env.PORT)
 connectDB()
+.then(() => {
+    app.listen(process.env.PORT || 3000, () => {
+        console.log(`Server is listening on ${process.env.PORT}`)
+    })
+})
+.catch((err) => {
+    console.log("Mongo DB Connection Failed! ", err)
+})
+
+
+
+
+
+
+
 
 
 /*
